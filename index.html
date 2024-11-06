@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Web App with Cloudflare WAF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        label, input, button {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Submit Your Name</h1>
+    <form id="nameForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Submitted Names (Simulated)</h2>
+    <ul id="nameList"></ul>
+
+    <script>
+        // JavaScript to simulate the submission and display of names (since there's no backend)
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from refreshing the page
+
+            const nameInput = document.getElementById('name');
+            const name = nameInput.value;
+
+            if (name) {
+                // Simulate adding the name to the list
+                const listItem = document.createElement('li');
+                listItem.textContent = name;
+                document.getElementById('nameList').appendChild(listItem);
+                
+                // Clear the input field
+                nameInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
