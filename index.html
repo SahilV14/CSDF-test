@@ -3,44 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Web App with Cloudflare WAF</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        label, input, button {
-            margin: 10px 0;
-        }
-    </style>
+    <title>SQL Injection Simulation</title>
 </head>
 <body>
-    <h1>Submit Your Name</h1>
-    <form id="nameForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+    <h1>Fake Login Form</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
         <button type="submit">Submit</button>
     </form>
 
-    <h2>Submitted Names (Simulated)</h2>
-    <ul id="nameList"></ul>
+    <p id="result"></p>
 
     <script>
-        // JavaScript to simulate the submission and display of names (since there's no backend)
-        document.getElementById('nameForm').addEventListener('submit', function(event) {
-            event.preventDefault();  // Prevent form from refreshing the page
-
-            const nameInput = document.getElementById('name');
-            const name = nameInput.value;
-
-            if (name) {
-                // Simulate adding the name to the list
-                const listItem = document.createElement('li');
-                listItem.textContent = name;
-                document.getElementById('nameList').appendChild(listItem);
-                
-                // Clear the input field
-                nameInput.value = '';
+        // JavaScript to simulate backend processing
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simulate SQL injection check
+            if (username.includes("' OR 1=1 --") || password.includes("' OR 1=1 --")) {
+                document.getElementById('result').innerText = "SQL Injection detected!";
+            } else {
+                document.getElementById('result').innerText = `Welcome, ${username}!`;
             }
         });
     </script>
