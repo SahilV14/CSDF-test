@@ -27,13 +27,26 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Simulate SQL injection check
-            if (username.includes("' OR 1=1 --") || password.includes("' OR 1=1 --")) {
-                document.getElementById('result').innerText = "SQL Injection detected!";
-            } else {
-                document.getElementById('result').innerText = `Welcome, ${username}!`;
-            }
-        });
+            const url = `http://100.25.213.206:3000/login?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+
+            // Using fetch to send a GET request
+            fetch(url, {
+                method: 'GET',  // or 'POST' if the API expects POST
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())  // Assuming the server returns JSON
+            .then(data => {
+                console.log('Response:', data);  // Handle the response
+                alert('Login successful!');       // Example alert on success
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Login failed!');
+            });
+        }
+        );
     </script>
 </body>
 </html>
