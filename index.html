@@ -36,10 +36,10 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())  // Assuming the server returns JSON
+      // Assuming the server returns JSON
             .then(data => {
                 console.log('Response:', data);  // Handle the response
-                alert('Login successful!');       // Example alert on success
+                alert(data);       // Example alert on success
             })
             .catch(error => {
                 console.error('Error:', error);
